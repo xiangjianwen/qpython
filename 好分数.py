@@ -6,6 +6,7 @@ import http.cookiejar
 import re
 import urllib
 import os, sys
+
 headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
         }
@@ -85,7 +86,7 @@ def lastexam(session,id):#最近考试 examId，paperId
     a=input("输入范围例如 10 在当前班级+-10:")
     examinfo=[]
     i=0
-    km=input("输入要查的科目例如数学:")
+    km=input("请输入要查的科目例如数学:  ")
     #url_km=urllib.quote(km.decode(sys.stdin.encoding).encode('utf8'))
     url_km= urllib.parse.quote(km)
   
