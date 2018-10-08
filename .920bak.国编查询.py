@@ -21,7 +21,7 @@ headers = {
 def rxlsx(xlsname):#读文件
     fname = xlsname+".xls"
     if not os.path.isfile(fname):
-        print (u'不h存在')
+        print (u'不存在')
         sys.exit()
     data = xlrd.open_workbook(fname)            # 打开fname文件
     data.sheet_names()
