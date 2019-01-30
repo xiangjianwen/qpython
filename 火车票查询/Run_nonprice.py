@@ -70,7 +70,7 @@ def forword_to_station(from_station_name,to_station_name,station_code,station_na
     
 header={'User-Agent':   'Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0'}
 r = requests.get(url, headers=header)
-print(r.text)
+#print(r.text)
 rs=r.text
 rs=rs[:10]
 if rs.find("data")==-1:#返回包含字符串“data”
@@ -114,3 +114,6 @@ else:
         
     print ('查询结束，共有 %d 趟列车。'%num )
     print (trains)
+    
+    
+
