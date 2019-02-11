@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import urllib.request
 #from openpyxl import Workbook
@@ -156,7 +156,7 @@ def getcardid( year, addr):
 jso=get_data("361121200304096811")
 getcardid("2002","361121")
 
-print(rxlsx("zm").col_values(1))
+print(rxlsx("92").col_values(1))
 try:
    t1=threading.Thread(target=wxlsx,args=("2000","362321")) 
    t2=threading.Thread(target=getcardid,args=("2001","362321")) 
