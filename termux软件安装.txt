@@ -50,6 +50,20 @@ jupyter notebook
 安装jupyterlab
 pip install jupyterlab
 jupyter serverextension enable --py jupyterlab --sys-prefix
+# 设置 jupyter notebook 可远程访
+jupyter notebook --generate-config
+ipython 
+In [1]: from notebook.auth import passwd
+In [2]: passwd()
+Enter password:
+Verify password:
+Out[2]: 'sha1:67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed'
+在 jupyter_notebook_config.py 中找到下面的行，取消注释并修改。
+c.NotebookApp.ip='0.0.0.0'
+c.NotebookApp.password = u'sha:ce...刚才复制的那个密文'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8889 #可自行指定一个端口, 访问时使用该端口
+
 
 
 
