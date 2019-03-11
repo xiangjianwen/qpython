@@ -41,10 +41,11 @@ def teacherPj(): #教师序号，教师账号文件
     
     response=requests.post(url=url,params=params,headers=headers,allow_redirects=False)
     response.encoding = 'gbk'#网页中文乱码
-    r=response.text
+    r=response
+    print(r)
     #s=response.text.encode('utf-8').decode('unicode_escape')
-    if len(r)>2000 :
-       print(len(r))
+    if len(r.text)>2000 :
+       print(len(r.text))
     #res_tr=r'(?<\是否建档户)[\d\u4e00-\u9fa5]+'#提取行内容
     #res_tr=r'<span>(.*?)</span>(.*?)</div>'
     #m_tr =  re.findall(res_tr,r,re.S)
