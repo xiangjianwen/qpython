@@ -1,0 +1,36 @@
+
+在win上跑的时候，为了声音不影响其他代码执行，选择用pygame模块播放声音的。结果放到手机上执行，发现即使通过pip成功装上了pygame模块，pygame.mixer.init()还是会报错找不到声卡。找了一些地方没有找到直接解决方法，只能间接解决。
+
+方法1（我最后决定使用的方法）
+在Termux中安装play-audio，pkg install play-audio
+这样在Termux中执行执行play-audio test.wav，就能播放声音了。
+而且可以play-audio test1.wav test2.wav直接连续播放多个。
+在Python中，则是subprocess.call('play-audio '+audiopath, shell=True)的方式实现声音播放
+在我的代码中，因为需要后台播放的同时要做一些input输入操作，还要做到停止可控，所以用了多进程的方法
+可能能执行失败，改为 subprocess.call('play-audio '+audiopath, shell=True)的方式实现声音播放
+import subprocess
+import signal
+p = subprocess.Popen('play-audio '+wp,close_fds=True, stdout=subprocess.PIPE,preexec_fn=os.setsid, shell=True)      # 播放不影响其他代码操作
+os.killpg(p.pid,signal.SIGUSR1)  # 关闭
+1
+2
+3
+4
+方法2
+因为声音是对文字的朗读，termux-api有tts所以也想试试。
+
+pkg install termux-api，然后执行卡死，才知道还需要安装个应用
+下载APP应用Termux:API安装，然后就能用了。
+termux-tts-speak 要朗读的英文文章，就能朗读了
+然后发现效果并不好
+termux-tts-engines看了一下手机默认的tts引擎，发现是讯飞的。
+这个tts虽然能离线使用，但是效果肯定是远不及在线合成的。
+不过我这手机也有点老了，
+不知道tts这玩意怎么更新或替换，就没再研究。
+
+之前测试朗读效果的时候，讯飞语音合成有的收费音源也是不错的，只不过我要朗读的是英文，量也不大，最后就用了微软的（看bing词典相关的时候，觉得声音效果不错，抓取了一下，发现调用了api.microsofttranslator.com这个接口实现的）
+
+方法3
+termux-api还有一个termux-media-player，也是能播放的
+测试了一下termux-media-player play test.wav，就能播放了
+termux-media-player stop就能停止播放，因为之前已经选择别的方法了，就没有用这个。

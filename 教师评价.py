@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 import requests
 import time
 import http.cookiejar
@@ -141,11 +139,3 @@ nrows = jstable.nrows                        # 获取table工作表总行数
 for i in  range(nrows):
     
     teacherPj(i,jsf)
-
-    
-    
-    
-    
-
-
-
