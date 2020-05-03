@@ -12,17 +12,19 @@ client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
 
 def reply_msg(msg):
     res2 = re.search(r"(?<=NickName).*?HeadImgUrl", str(msg))
-    res3 = re.search(r"(?<=NickName)(?!.*?NickName).*?HeadImgUrl", res2.group(0))
-    res4 = re.search(r"[\u4e00-\u9fa5]+",res3.group(0))
-    #print(msg)
-    print("收到一条群信息：",res4.group(0)+','+msg['ActualNickName'], msg['Content'])
-    result  = client.synthesis('来自微信群,'+res4.group(0)+'的消息:'+msg['ActualNickName']+'回复,'+msg['Content'], 'zh', 1, {  'vol': 5,'per':4})
-    # 识别正确返回语音二进制 错误则返回dict 参照下面错误码
-    if not isinstance(result, dict):
-        with open('auido.mp3', 'wb') as f:
-             f.write(result)
- 
-    subprocess.call('mpv auido.mp3', shell=True)
+    if res2:
+       res3 = re.search(r"(?<=NickName':)(?!.*?NickName).*?HeadImgUrl", res2.group(0))
+       res4 = re.search(r".*?,",res3.group(0))
+       #print(msg)
+       print("收到一条群信息：",res4.group(0)+','+msg['ActualNickName'], msg['Content'])
+       result  = client.synthesis('来自微信群,'+res4.group(0)+'的消息:'+msg['ActualNickName']+'回复,'+msg['Content'], 'zh', 1, {  'vol': 5,'per':4})
+       # 识别正确返回语音二进制 错误则返回dict 参照下面错误码
+       if not isinstance(result, dict):
+          with open('auido.mp3', 'wb') as f:
+               f.write(result)
+       subprocess.call('mpv auido.mp3', shell=True)
+    else:
+        print(msg)
 def after_login():
     # 获得完整的群聊列表
     print("完整的群聊列表如下：")
