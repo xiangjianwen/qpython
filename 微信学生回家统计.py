@@ -39,8 +39,8 @@ def wxlsx(table,datastr,xlsname):#保存文件
     for i in range(nrows):
     	cell1_value = table.cell_value(i,0) 
     	if datastr.find(cell1_value)!=-1:
-    		worksheet.write(i,1,datastr,format)
-    		print(datastr+'   ---'+table.cell_value(i,1))
+    		worksheet.write(i,1,datastr+'---'+table.cell_value(i,1),format)
+    		print(datastr+'---'+table.cell_value(i,1))
     workbook.close()
     return "succss"
 print(rxlsx("99").col_values(1))
