@@ -40,7 +40,7 @@ def wxlsx(table,datastr,xlsname):#保存文件
     	cell1_value = table.cell_value(i,0) 
     	if datastr.find(cell1_value)!=-1:
     		worksheet.write(i,1,datastr,format)
-    		print('g'+table.cell_value(i,1))
+    		print(datastr+'   ---'+table.cell_value(i,1))
     workbook.close()
     return "succss"
 print(rxlsx("99").col_values(1))
@@ -59,7 +59,7 @@ def handle_friend_msg(msg):
     print(msg_from_user+msg_content)
 @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def reply_msg(msg):
-    fobj=open('/storage/emulated/0/微信群聊记录.txt','a')
+    #fobj=open('/storage/emulated/0/微信群聊记录.txt','a')
     res2 = re.search(r"(?<=NickName).*?HeadImgUrl", str(msg))
     if res2:
        res3 = re.search(r"(?<=NickName':)(?!.*?NickName).*?HeadImgUrl", res2.group(0))
@@ -80,7 +80,7 @@ def reply_msg(msg):
        subprocess.call('mpv auido.mp3', shell=True)
     else:
         print(msg+'出错了')
-    fobj.close()
+    #fobj.close()
 
 
 if __name__ == '__main__':
