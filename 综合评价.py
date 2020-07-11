@@ -47,7 +47,7 @@ def getGradeData(table,StudentId):
         itemC=[]
         for i in  range(nrows):
             cell_value = table.cell_value(i,j) #获取第i行中第j列的值
-            print(cell_value)
+            #print(cell_value)
             if (cell_value=="A" and table.cell_value(i,0)!=StudentId) :
                itemA.append(table.cell_value(i,0))
             if (cell_value=="B" and table.cell_value(i,0)!=StudentId):
