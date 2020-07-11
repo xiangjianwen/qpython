@@ -7,7 +7,7 @@ import time
 #sys.setdefaultencoding('utf8')
 
 
-path = u"/storage/emulated/0/atuojs/法律法规时事政治"
+path = u"/storage/emulated/0/a/2020"
 result = os.listdir(path)
 result.sort()
 for file in result:
