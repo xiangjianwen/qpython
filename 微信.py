@@ -29,7 +29,7 @@ def reply_msg(msg):
        msg_time_rec = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
        msg_create_time = msg['CreateTime']
        print("收到一条群信息：",msg_time_rec+':'+res4.group(0)+','+msg['ActualNickName'], msg['Content'])
-       result  = client.synthesis('来自微信群,'+res4.group(0)+'的消息:'+msg['ActualNickName']+'回复,'+msg['Content'], 'zh', 1, {  'vol': 5,'per':4})
+       result  = client.synthesis('来自微信群,'+res4.group(0)+'的消息:'+msg['ActualNickName']+'回复,'+msg['Content'], 'zh', 1, {  'vol': 10,'per':4})
        # 识别正确返回语音二进制 错误则返回dict 参照下面错误码
        fobj.write(msg_time_rec+':'+res4.group(0)+'的消息:'+msg['ActualNickName']+'回复,'+msg['Content']+'\n')
        if not isinstance(result, dict):
@@ -37,7 +37,7 @@ def reply_msg(msg):
                f.write(result)
        subprocess.call('mpv auido.mp3', shell=True)
     else:
-        print('出错了')
+        print(msg+'出错了')
     fobj.close()
 def after_login():
     # 获得完整的群聊列表
